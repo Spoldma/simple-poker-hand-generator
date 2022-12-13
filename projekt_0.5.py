@@ -242,7 +242,7 @@ def leia_võitja(käed):
             võitjad.append(i)
 
     if len(võitjad) == 1:
-        print('Mängu võitis: mängija', str(käed.index(võitjad[0]) + 1))
+        print('Mängu võitis:', nimed[käed.index(võitjad[0])])
     elif len(võitjad) == 2:
         if võitjad[0][1] == võitjad[1][1]:
             print()
@@ -250,7 +250,7 @@ def leia_võitja(käed):
 def mängijate_nimed(mängijate_arv):
     jär = []
     for i in range(mängijate_arv):
-        tekst = 'Sisesta' + str(i+1) + '. mängija nimi: '
+        tekst = 'Sisesta ' + str(i+1) + '. mängija nimi: '
         nimi = input(tekst)
         jär.append(nimi)
     return jär
@@ -262,7 +262,14 @@ def mängijate_nimed(mängijate_arv):
 
 # Mitu mängijat mängib?
 mängijate_arv = input('Sisesta mängijate arv: ')
-mängijate_arv = int(mängijate_arv)
+while True:
+    try:
+        mängijate_arv = int(mängijate_arv)
+        break
+    except:
+        print("Sisestatud pole korrektne arv. Proovi uuesti!")
+        mängijate_arv = input('Sisesta mängijate arv: ')
+
 mängijate_arv = kontrolli_mängijate_arvu(mängijate_arv, 5)
 
 nimed = mängijate_nimed(mängijate_arv)
