@@ -5,6 +5,7 @@ import pygame
 from pygame.locals import *
 from sys import exit
 
+
 def kaardipakk():
     mastid = ('poti', 'risti', 'ärtu', 'ruutu')
     väärtus = (2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A')
@@ -638,7 +639,7 @@ for i in käed:
 print(käed)
 
 võit = leia_võitja(käed)
-
+print(type(võit))
 
 #mängijate kaardid kättesaadavaks
 mängijate_kaardid = []
@@ -663,15 +664,16 @@ pealkiri = pealkirjafont.render("Lauakaardid", True, (255, 255, 255))
 tekstifont = pygame.font.Font("fondid/peen.ttf", 30)
 võidufont = pygame.font.Font("fondid/peen.ttf", 70)
 
-if len(võit) == 2:
+if type(võit) == str:
+    tekst = 'Võitis: ' + võit
+    võitja = võidufont.render(tekst, True, (255, 129, 129))
+elif len(võit) == 2:
     tekst = 'Viik: ' + võit[0] + ' ja ' + võit[1]
     võitja = võidufont.render(tekst, True, (255, 129, 129))
 elif len(võit) == 3:
     tekst = 'Viik: ' + võit[0] + ', ' + võit[1] + ' ja ' + võit[2]
     võitja = võidufont.render(tekst, True, (255, 129, 129))
-else:
-    tekst = 'Võitis: ' + võit
-    võitja = võidufont.render(tekst, True, (255, 129, 129))
+
 
 
 #flop + turn + river
