@@ -637,7 +637,7 @@ for i in käed:
         käed[j] = (1, kontrolli_high_card(i)[1])
 print(käed)
 
-print(leia_võitja(käed))
+võit = leia_võitja(käed)
 
 
 #mängijate kaardid kättesaadavaks
@@ -662,14 +662,15 @@ pealkirjafont = pygame.font.Font("fondid/peen.ttf", 65)
 pealkiri = pealkirjafont.render("Lauakaardid", True, (255, 255, 255))
 tekstifont = pygame.font.Font("fondid/peen.ttf", 30)
 võidufont = pygame.font.Font("fondid/peen.ttf", 70)
-if len(leia_võitja(käed)) == 1:
-    tekst = 'Võitis: ' + leia_võitja(käed)
+
+if len(võit) == 2:
+    tekst = 'Viik: ' + võit[0] + ' ja ' + võit[1]
     võitja = võidufont.render(tekst, True, (255, 129, 129))
-elif len(leia_võitja(käed)) == 2:
-    tekst = 'Viik: ' + leia_võitja(käed)[0] + ' ja ' + leia_võitja[1]
+elif len(võit) == 3:
+    tekst = 'Viik: ' + võit[0] + ', ' + võit[1] + ' ja ' + võit[2]
     võitja = võidufont.render(tekst, True, (255, 129, 129))
-elif len(leia_võitja(käed)) == 3:
-    tekst = 'Viik: ' + leia_võitja(käed)[0] + ', ' + leia_võitja[1] + ' ja ' + leia_võitja[2]
+else:
+    tekst = 'Võitis: ' + võit
     võitja = võidufont.render(tekst, True, (255, 129, 129))
 
 
