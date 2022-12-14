@@ -240,12 +240,13 @@ def leia_võitja(käed):
     for i in käed:
         if i[0] == suurim:
             võitjad.append(i)
-
-    if len(võitjad) == 1:
-        print('Mängu võitis:', nimed[käed.index(võitjad[0])])
-    elif len(võitjad) == 2:
-        if võitjad[0][1] == võitjad[1][1]:
-            print()
+    if len(võitjad)
+        if len(võitjad) == 1:
+            print('Mängu võitis:', nimed[käed.index(võitjad[0])])
+        elif len(võitjad) == 2:
+            if võitjad[0][1] == võitjad[1][1]:
+                print('Mäng jäi viiki, võitu jagavad:', nimed[käed.index(võitjad[0])], 'ja', nimed[käed.index(võitjad[1])])
+            
 
 def mängijate_nimed(mängijate_arv):
     jär = []
