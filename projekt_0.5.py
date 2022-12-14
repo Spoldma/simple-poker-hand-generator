@@ -234,18 +234,219 @@ def leia_võitja(käed):
     suurus = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
     võitjad = []
     suurim = 0
+    mitmes = 0
+    for i in range(len(käed)):
+        käed[i] = list(käed[i])
+        käed[i].append(mitmes)       
+        mitmes += 1
     for i in käed:
         if i[0] > suurim:
             suurim = i[0]
     for i in käed:
         if i[0] == suurim:
             võitjad.append(i)
-    if len(võitjad)
-        if len(võitjad) == 1:
-            print('Mängu võitis:', nimed[käed.index(võitjad[0])])
-        elif len(võitjad) == 2:
+
+    if len(võitjad) == 1:
+        print('Mängu võitis:', nimed[võitjad[0][2]])
+        return(nimed[võitjad[0][2]])
+    
+    elif len(võitjad) == 2:
+        suurus = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+        if type(võitjad[0][1]) == list:
             if võitjad[0][1] == võitjad[1][1]:
-                print('Mäng jäi viiki, võitu jagavad:', nimed[käed.index(võitjad[0])], 'ja', nimed[käed.index(võitjad[1])])
+                print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+            else:
+                suurim = -1
+                w = []
+                for i in võitjad[0][1]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                suurim = -1
+                for i in võitjad[1][1]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                if w[0] > w[1]:
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif w[0] < w[1]:
+                    print('Mängu võitis:', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[1][2]])
+                else:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+
+        else:
+            suurus = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+            if len(võitjad[0]) == 3:
+                if võitjad[0][1] == võitjad[1][1]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+                elif suurus.index(võitjad[0][1]) > suurus.index(võitjad[1][1]):
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif suurus.index(võitjad[0][1]) < suurus.index(võitjad[1][1]):
+                    print('Mängu võitis:', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]])
+            elif len(võitjad[0]) == 4 and võitjad[0] == 7:
+                if võitjad[0][1:3] == võitjad[1][1:3]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+                elif suurus.index(võitjad[0][1]) > suurus.index(võitjad[1][1]):
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif suurus.index(võitjad[0][1]) < suurus.index(võitjad[1][1]):
+                    print('Mängu võitis:', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]])
+                elif suurus.index(võitjad[0][1]) == suurus.index(võitjad[1][1]):
+                    if suurus.index(võitjad[0][2]) > suurus.index(võitjad[1][2]):
+                        print('Mängu võitis:', nimed[võitjad[0][2]])
+                        return(nimed[võitjad[0][2]])
+                    elif suurus.index(võitjad[0][2]) < suurus.index(võitjad[1][2]):
+                        print('Mängu võitis:', nimed[võitjad[1][2]])
+                        return(nimed[võitjad[0][2]])
+            elif len(võitjad[0]) == 4 and võitjad[0] != 7:
+                suurim = -1
+                w = []
+                for i in võitjad[0][1:3]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                suurim = -1
+                for i in võitjad[1][1:3]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                if w[0] > w[1]:
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif w[0] < w[1]:
+                    print('Mängu võitis:', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[1][2]])
+                else:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+
+    elif len(võitjad) == 3:
+        
+        suurus = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+        if type(võitjad[0][1]) == list:
+            if võitjad[0][1] == võitjad[1][1] == võitjad[2][1]:
+                print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], ',', nimed[võitjad[1][2]], 'ja', nimed[võitjad[2][2]])
+                return(nimed[võitjad[0][2]], nimed[võitjad[1][2]], nimed[võitjad[2][2]])
+            else:
+                suurim = -1
+                w = []
+                for i in võitjad[0][1]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                suurim = -1
+                for i in võitjad[1][1]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                for i in võitjad[2][1]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                if w[0] > w[1] and w[0] > w[2]:
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif w[1] > w[0] and w[1] > w[2]:
+                    print(nimed[võitjad[1][2]])
+                    return(nimed[võitjad[1][2]])
+                elif w[2] > w[0] and w[2] > w[1]:
+                    print('Mängu võitis:', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[2][2]])
+                elif w[0] == w[1]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+                elif w[0] == w[2]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[2][2]])
+                elif w[1] == w[2]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[1][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[1][2]], nimed[võitjad[2][2]])
+                else:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], ',', nimed[võitjad[1][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]], nimed[võitjad[2][2]])
+
+        else:
+            suurus = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+            if len(võitjad[0]) == 3:
+                if võitjad[0][1] == võitjad[1][1] == võitjad[2][1]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], ',', nimed[võitjad[1][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]], nimed[võitjad[2][2]])
+                
+                w = []
+                for i in range(3):
+                    w.append(suurus.index(võitjad[i][1]))
+
+                if w[0] > w[1] and w[0] > w[2]:
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif w[1] > w[0] and w[1] > w[2]:
+                    print(nimed[võitjad[1][2]])
+                    return(nimed[võitjad[1][2]])
+                elif w[2] > w[0] and w[2] > w[1]:
+                    print('Mängu võitis:', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[2][2]])
+                elif w[0] == w[1]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+                elif w[0] == w[2]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[2][2]])
+                elif w[1] == w[2]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[1][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[1][2]], nimed[võitjad[2][2]])
+                else:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], ',', nimed[võitjad[1][2]], 'ja', nimed[võitjad[2][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]], nimed[võitjad[2][2]])
+
+            elif len(võitjad[0]) == 4 and võitjad[0] == 7:
+                if võitjad[0] == võitjad[1]:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+                elif suurus.index(võitjad[0][1]) > suurus.index(võitjad[1][1]):
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif suurus.index(võitjad[0][1]) < suurus.index(võitjad[1][1]):
+                    print('Mängu võitis:', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]])
+                elif suurus.index(võitjad[0][1]) == suurus.index(võitjad[1][1]):
+                    if suurus.index(võitjad[0][2]) > suurus.index(võitjad[1][2]):
+                        print('Mängu võitis:', nimed[võitjad[0][2]])
+                        return(nimed[võitjad[0][2]])
+                    elif suurus.index(võitjad[0][2]) < suurus.index(võitjad[1][2]):
+                        print('Mängu võitis:', nimed[võitjad[1][2]])
+                        return(nimed[võitjad[0][2]])
+            elif len(võitjad[0]) == 4 and võitjad[0] != 7:
+                suurim = -1
+                w = []
+                for i in võitjad[0][1:3]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                suurim = -1
+                for i in võitjad[1][1:3]:
+                    if suurim < suurus.index(i):
+                        suurim = suurus.index(i)
+                w.append(suurim)
+                if w[0] > w[1]:
+                    print('Mängu võitis:', nimed[võitjad[0][2]])
+                    return(nimed[võitjad[0][2]])
+                elif w[0] < w[1]:
+                    print('Mängu võitis:', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[1][2]])
+                else:
+                    print('Mäng jäi viiki, võitu jagavad:', nimed[võitjad[0][2]], 'ja', nimed[võitjad[1][2]])
+                    return(nimed[võitjad[0][2]], nimed[võitjad[1][2]])
+
+
             
 
 def mängijate_nimed(mängijate_arv):
@@ -262,19 +463,20 @@ def mängijate_nimed(mängijate_arv):
         
 
 # Mitu mängijat mängib?
-mängijate_arv = input('Sisesta mängijate arv: ')
-while True:
-    try:
-        mängijate_arv = int(mängijate_arv)
-        break
-    except:
-        print("Sisestatud pole korrektne arv. Proovi uuesti!")
-        mängijate_arv = input('Sisesta mängijate arv: ')
+# mängijate_arv = input('Sisesta mängijate arv: ')
+# while True:
+#     try:
+#         mängijate_arv = int(mängijate_arv)
+#         break
+#     except:
+#         print("Sisestatud pole korrektne arv. Proovi uuesti!")
+#         mängijate_arv = input('Sisesta mängijate arv: ')
 
-mängijate_arv = kontrolli_mängijate_arvu(mängijate_arv, 5)
+# mängijate_arv = kontrolli_mängijate_arvu(mängijate_arv, 4)
+mängijate_arv = 3
 
-nimed = mängijate_nimed(mängijate_arv)
-#nimed = [1, 2, 3, 4, 5]
+#nimed = mängijate_nimed(mängijate_arv)
+nimed = ['1san', '2nas', '3ans']
 
 # Segatakse kaardipakk
 kaardipakk = kaardipakk()
@@ -288,53 +490,14 @@ laud, kaardipakk = turn(kaardipakk, laud)
 laud, kaardipakk = river(kaardipakk, laud)
 
 # Jagame kõik käed koos lauaga eraldi hulkadeks
-käed = kõik_käed(käed, laud)
+#käed = kõik_käed(käed, laud)
 
-j = -1
-for i in käed:
-    j += 1
-    if kontrolli_royal_flush(i) == True:
-        print('Mängijal', nimed[j], 'on Royal FLush')
-        käed[j] = (10, 'A')
-    
-    elif kontrolli_straight_flush(i) == True:
-        print('Mängijal', nimed[j], 'on Straight Flush')
-        käed[j] = (9, kontrolli_straight_flush(i)[1])
-    
-    elif kontrolli_four_of_a_kind(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Four of a Kind')
-        käed[j] = (8, kontrolli_four_of_a_kind(i)[1])
-        
-    elif kontrolli_straight(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Straight')
-        käed[j] = (7, kontrolli_straight(i)[1])
-    
-    elif kontrolli_full_house(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Full House')
-        käed[j] = (6, kontrolli_full_house(i)[1], kontrolli_full_house(i)[2])
-    
-    elif kontrolli_flush(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Flush')
-        käed[j] = (5, kontrolli_flush(i)[1])
-    
-    elif kontrolli_three_of_a_kind(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Three of a Kind')
-        käed[j] = (4, kontrolli_three_of_a_kind(i)[1])
-    
-    elif kontrolli_two_pairs(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Kaks Paari')
-        käed[j] = (3, kontrolli_two_pairs(i)[1], kontrolli_two_pairs(i)[2])
-    
-    elif kontrolli_pair(i)[0] == True:
-        print('Mängijal', nimed[j], 'on Paar')
-        käed[j] = (2, kontrolli_pair(i)[1])
-    
-    elif kontrolli_high_card(i)[0] == True:
-        print('Mängijal', nimed[j], 'on High Card')
-        käed[j] = (1, kontrolli_high_card(i)[1])
+käed = [(5, 'Q'), (5, 'Q'), (5, 'Q')]
 print(käed)
 
-leia_võitja(käed)
+print(leia_võitja(käed))
+
+
 
 
 
