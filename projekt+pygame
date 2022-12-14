@@ -250,10 +250,11 @@ def leia_võitja(käed):
             võitjad.append(i)
 
     if len(võitjad) == 1:
-        print('Mängu võitis:', nimed[käed.index(võitjad[0])])
+        return 'Mängu võitis: ' + nimed[käed.index(võitjad[0])]
     elif len(võitjad) == 2:
         if võitjad[0][1] == võitjad[1][1]:
             print()
+            return
 
 def mängijate_nimed(mängijate_arv):
     jär = []
@@ -341,7 +342,7 @@ for i in käed:
         käed[j] = (1, kontrolli_high_card(i)[1])
 print(käed)
 
-leia_võitja(käed)
+print(leia_võitja(käed))
 
 
 #mängijate kaardid kättesaadavaks
@@ -356,47 +357,86 @@ for nimi in nimed:
 
 
 
-
 #pygame
 pygame.init()
 
+#põhi, tekstid
 screen = pygame.display.set_mode((1000, 600))
 pygame.display.set_caption("Pokker")
+pealkirjafont = pygame.font.Font("fondid/peen.ttf", 65)
+pealkiri = pealkirjafont.render("Lauakaardid", True, (255, 255, 255))
+tekstifont = pygame.font.Font("fondid/peen.ttf", 30)
+võidufont = pygame.font.Font("fondid/peen.ttf", 70)
+võitja = võidufont.render(leia_võitja(käed), True, (255, 129, 129))
 
+
+#flop + turn + river
 def lauakaart(k, w, h):
     kaart = k[0] + str(k[1])
     kaart = pygame.image.load('pildid/' + kaart + '.png')
     kaart = pygame.transform.scale(kaart, (100, 144.5))
     return screen.blit(kaart, (w, h))
 
+#mängijate käed
 def mängijakaart(k, w, h, i):
     kaart = k[i]
     kaart = pygame.image.load('pildid/' + kaart + '.png')
     kaart = pygame.transform.scale(kaart, (80, 115.6))
     return screen.blit(kaart, (w, h))
 
-
+         
 #mäng
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-            
+    #taust            
     screen.fill((0, 100, 0))
     
-    # flop + turn + river lauale
+    #pealkiri ja lauakaardid
+    screen.blit(pealkiri, (320, 10))
     laius = 100
     for k in laual[0]:
-        lauakaart(k, laius, 30)
+        lauakaart(k, laius, 100)
         laius += 175
         
-    #kuidagi klikkides skip
-    laius = 100
-    for k in mängijate_kaardid:
-        for i in range(1, 3):
-            mängijakaart(k, laius, 250, i)
-            laius += 100
-        laius += 100
-        
+    #kaardid vastavalt mängijatele    
+    if mängijate_arv == 2:
+        laius = 220
+        tekstilaius = 220
+        for k in mängijate_kaardid:
+            for i in range(1, 3):
+                mängijakaart(k, laius, 400, i)
+                laius += 100
+            laius += 180
+            tekst = tekstifont.render(k[0], True, "white")
+            screen.blit(tekst, (tekstilaius, 515))
+            tekstilaius += 380
+    elif mängijate_arv == 3:
+        laius = 130
+        tekstilaius = 130
+        for k in mängijate_kaardid:
+            for i in range(1, 3):
+                mängijakaart(k, laius, 400, i)
+                laius += 100
+            laius += 80
+            tekst = tekstifont.render(k[0], True, "white")
+            screen.blit(tekst, (tekstilaius, 515))
+            tekstilaius += 280 
+    elif mängijate_arv == 4:
+        laius = 20
+        tekstilaius = 20
+        for k in mängijate_kaardid:
+            for i in range(1, 3):
+                mängijakaart(k, laius, 400, i)
+                laius += 100
+            laius += 60
+            tekst = tekstifont.render(k[0], True, "white")
+            screen.blit(tekst, (tekstilaius, 515))
+            tekstilaius += 260
+    
+    #võitja
+    screen.blit(võitja, (100, 267))
+
     pygame.display.update()
