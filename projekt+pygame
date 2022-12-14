@@ -295,7 +295,7 @@ def leia_võitja(käed):
                     return(nimed[võitjad[0][2]])
                 elif suurus.index(võitjad[0][1]) < suurus.index(võitjad[1][1]):
                     print('Mängu võitis:', nimed[võitjad[1][2]])
-                    return(nimed[võitjad[0][2]])
+                    return(nimed[võitjad[1][2]])
 
             elif len(võitjad[0]) == 4 and võitjad[0][0] == 7:
                 if võitjad[0][1:3] == võitjad[1][1:3]:
@@ -662,7 +662,15 @@ pealkirjafont = pygame.font.Font("fondid/peen.ttf", 65)
 pealkiri = pealkirjafont.render("Lauakaardid", True, (255, 255, 255))
 tekstifont = pygame.font.Font("fondid/peen.ttf", 30)
 võidufont = pygame.font.Font("fondid/peen.ttf", 70)
-võitja = võidufont.render(leia_võitja(käed), True, (255, 129, 129))
+if len(leia_võitja(käed)) == 1:
+    tekst = 'Võitis: ' + leia_võitja(käed)
+    võitja = võidufont.render(tekst, True, (255, 129, 129))
+elif len(leia_võitja(käed)) == 2:
+    tekst = 'Viik: ' + leia_võitja(käed)[0] + ' ja ' + leia_võitja[1]
+    võitja = võidufont.render(tekst, True, (255, 129, 129))
+elif len(leia_võitja(käed)) == 3:
+    tekst = 'Viik: ' + leia_võitja(käed)[0] + ', ' + leia_võitja[1] + ' ja ' + leia_võitja[2]
+    võitja = võidufont.render(tekst, True, (255, 129, 129))
 
 
 #flop + turn + river
