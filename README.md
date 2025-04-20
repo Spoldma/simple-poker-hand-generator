@@ -1,5 +1,5 @@
 ## 🃏 Texas Hold'em Poker Simulator
-This project is a Python-based simulation of a Texas Hold'em poker game. It handles deck creation, card dealing, and community card distribution (flop, turn, river), and also includes functionality to detect a Royal Flush.
+This project is a Python-based simulation of a Texas Hold'em poker game. It handles deck creation, card dealing, and community card distribution (flop, turn, river), and also includes functionality to detect the winner base on players hands.
 
 ## 📦 Features
 Generate a standard 52-card deck
